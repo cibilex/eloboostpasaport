@@ -19,6 +19,7 @@ module.exports.postRegister=(req,res,next)=>{
             newuser.save()
             .then(()=>{
                 console.log("veritabanına kaydedildi")
+                req.flash('info', 'Flash is back!') //flash yayınlıyoruz
                 res.redirect("/")   //formdan gelen bilgiler veritabanına kaydedilirse anasayfaya gitmesini istedik
             }).catch(err=>console.log(err))
             

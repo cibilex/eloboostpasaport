@@ -1,0 +1,21 @@
+Passport kimlik doðrulama arakatmanýdýr.Oturum açarken kimlik doðrulama ve kolaylýkla oturumdan çýkmayý saðlar.
+Facebook,instegrram  veya herhangi bi profil ile giriþi saðlar.
+
+
+-Kurulum yapýldýktan sonra bir stateji belirlenir ve doðrulanacak veriler stratejiye belirlenir.Bu stratejideki done fonksiyonu hrehangi bi hata olursa geribildirim saðlar.
+
+-passport-local ile yerel kimlikdoðrulamasý kolaylýkla saðlanýr.passport-local diyerek jaredhanson githubunda dökümasyonu var.
+
+
+Kurulum:npm install passport passport-local
+
+
+dahil etme: const passport=require("passport")
+
+
+çalýþtýrma: 
+ app.use(passport.initialize())
+ app.use(passport.session)             app.js dosyamýzda porjede çalýþtýrýyoruz.
+
+
+Artýk yapmamýz gereken local strateji belirlemek ve hata olursa done fonksiyonu ile hatayý almak.

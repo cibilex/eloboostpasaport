@@ -1,0 +1,42 @@
+Connect-flash istenilen url de flash patlatýp ardýndan gelen url de ise flashý yakalar.Bize sayfalar arasý iletiþimi verir.
+Kullaným:express-session ,cookie-parser ve connect-flash indiroyoruz ardýndan kuruyoruz.Bunlarý yaptýktan sonra istenilen url'de
+flashý patlatýyoruz ardýndan ardýndan gelen url e giderek flashý yakalýyoruz.
+
+Kurulum:npm install express-session cookie-parser connect-flash
+
+const flash=require("connect-flash")
+ const session=require("express-session")
+ const cookieParser=require("cookie-parser")
+
+ //connect-flash kurulum
+ app.use(cookieParser('passportTutorial'));
+ app.use(session({ cookie: { maxAge: 60000 },
+    resave:true,
+    secret:"passportTutorial",
+    saveUninitialized:true
+}));
+ app.use(flash());
+
+
+böylece kurulum ve yüklemeyi tamamladýk artýk kullanma zamaný.Ýstenilen url controllerine gidip 
+
+ req.flash('info', 'Flash is back!')  flashý yayýnlamýþ oluyoruz.info parametresinde mesajadý,flash is back ise flash içeriði
+
+
+ardýndan sonraki urle giderek glashý tutuyoruz
+
+res.render("home",{flashSuccess:req.flash("info")})  res.render ile sayfayý istedik ardýndan.req.flash ile flashý tutuyoruz.
+
+Böylece flashSuccess flash mesajýmýzýn deðiþkeni oluyor.
+
+
+Not:Bu þekilde kullanýmýnda flash mesajý gidilecek urlin parametresinde yazmak zorundayken flash mesajlarýný global hale getirirsek buna gerek kalmaz.
+Bunun için kurulumdan hemen sonra bir middleware kurulur ve flash mesajlarý orda req.locale atýlýr.
+
+ //global flashlar yaratma
+app.use((req,res,next)=>{
+    res.locals.flashSuccess=req.flash("info")
+    next()
+})
+
+Not2:Flash mesajlarýný layout.ejs de kullanabiliriz .Çünkü çok sayýda flash olabilir kolaylýk açýsýndan	
