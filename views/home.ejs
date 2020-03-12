@@ -1,13 +1,7 @@
-<div class="alert alert-danger"><%=flashSuccess%></div>
 
-<% if(passportFailure!=""){%>
-    <div class="alert alert-danger"><%=passportFailure%></div>
 
-<%}%>
-<% if(passportSucces!=""){%>
-    <div class="alert alert-danger"><%=passportSucces%></div>
+<%if(user){%>
+    <div class="alert alert-danger"><%=user.username%></div>
 <%}%>
 
-<% if(passportSucces!=""){%>
-    <div class="alert alert-danger"><%=passportSucces%></div>
-<%}%>
+<h2>anasayfa</h2>

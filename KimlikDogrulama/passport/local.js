@@ -1,12 +1,12 @@
 const localStrategy=require("passport-local").Strategy;
 const passport=require("passport")
 const bcrypt=require("bcryptjs") //passportu bcrypt ile 
-const user=require("../../models/userSchema")
+const User=require("../../models/userSchema")
 
 
 
 passport.use(new localStrategy((username,password,done)=>{   //formdan gelen bilgilerdeki username ve password buraya getirilir.
-    user.findOne({username},(err,user)=>{         //veritabanımızda username anahtar başlığı ile arama yapıyoruz ve varsa getirecek.
+    User.findOne({username},(err,user)=>{         //veritabanımızda username anahtar başlığı ile arama yapıyoruz ve varsa getirecek.
         if(err) return done(err,null,"bir hata oluştu")   // eğer bir hata olursa bu fonksiyon çalışır ve değeri done fonksiyonunun ilk parametresi hata,2.parametresi user değeri burda olmadığından null yazılır ve 3.parametresinde ise istenilen mesaj yazılır.
         
         if(!user){

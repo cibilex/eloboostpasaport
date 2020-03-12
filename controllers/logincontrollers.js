@@ -1,13 +1,16 @@
 const passport=require("passport")
 
 
-require("../KimlikDogrulama/passport/localStratejy") //kimlik doğrulama
+require("../KimlikDogrulama/passport/local") //kimlik doğrulama
 
 
 
 module.exports.getLogin=(req,res,next)=>{
-    res.render("login")
-
+    if(req.user){
+        res.redirect("/home")
+    }else{
+        res.render("login")
+    }
 }
 
 module.exports.postLogin=(req,res,next)=>{
